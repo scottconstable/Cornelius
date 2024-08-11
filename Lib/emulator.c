@@ -662,6 +662,13 @@ EmulateCPUID(CORNELIUS_VM *Vm, UINT32 VcpuNum, WHV_RUN_VP_EXIT_CONTEXT *ExitCont
         break;
     }
 
+    case 5: // MONITOR/MWAIT Leaf
+      SetRegister64(Vm, VcpuNum, WHvX64RegisterRax, ExitContext->CpuidAccess.DefaultResultRax);
+      SetRegister64(Vm, VcpuNum, WHvX64RegisterRcx, ExitContext->CpuidAccess.DefaultResultRcx);
+      SetRegister64(Vm, VcpuNum, WHvX64RegisterRdx, ExitContext->CpuidAccess.DefaultResultRdx);
+      SetRegister64(Vm, VcpuNum, WHvX64RegisterRbx, ExitContext->CpuidAccess.DefaultResultRbx);
+      break;
+
     case 6: // Thermal and Power Management Leaf
         SetRegister64(Vm, VcpuNum, WHvX64RegisterRax, ExitContext->CpuidAccess.DefaultResultRax);
         SetRegister64(Vm, VcpuNum, WHvX64RegisterRcx, ExitContext->CpuidAccess.DefaultResultRcx);
